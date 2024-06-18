@@ -59,7 +59,7 @@
 }
 
 .article-card-body {
-  font-size: 0.5em;
+  font-size: 0.6em;
   color: white;
 }
 
@@ -98,6 +98,51 @@
 }
 
 .single-article-body {
+  font-size: 0.6em;
+  color: white;
+}
+
+.comment-card {
+  display: flex;
+  flex-direction: column;
+  /* border: 1px solid #ddd;
+  border-radius: 8px; */
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+  max-width: 500px;
+  margin: 0 auto;
+  margin-bottom: 16px;
+  margin-right: 2.5rem;
+}
+
+.comment-card:hover {
+  transform: scale(1.02);
+}
+
+.comment-card-content {
+  padding: 16px;
+}
+
+.comment-card-title,
+.comment-card-body,
+.comment-card-date {
+  margin: 0 auto;
+}
+
+.comment-card-title {
+  font-size: 0.75em;
+  color: white;
+  margin-bottom: 8px;
+}
+
+.comment-card-body {
+  font-size: 0.6em;
+  color: white;
+  margin-bottom: 16px;
+}
+
+.comment-card-date {
   font-size: 0.5em;
   color: white;
 }
