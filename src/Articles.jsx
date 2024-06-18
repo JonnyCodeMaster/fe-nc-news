@@ -1,22 +1,26 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import ArticleCard from "./ArticleCard";
 import { getArticles } from './utils/api';
 
-function Articles({ articles, setArticles }) {
+function Articles() {
+    const [articles, setArticles] = useState([]);
+    const [isLoadingArticles, setIsLoadingArticles] = useState(true);
+    
     useEffect(() => {
+        setIsLoadingArticles(true);
         getArticles()
           .then(data => {
             setArticles(data.articles);
+            setIsLoadingArticles(false);
           })
           .catch(error => {
             console.error('Error fetching items:', error);
+            setIsLoadingArticles(false);
           });
       }, []);
 
-      if (!articles) {
-        return <p>Loading articles...</p>;
-      }
+      if (isLoadingArticles) {return <p>Loading articles...</p>};
 
       return (
         <section>
