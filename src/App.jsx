@@ -6,6 +6,7 @@ import Header from "./Header";
 import Nav from "./Nav";
 import Home from "./Home";
 import Articles from "./Articles";
+import Article from "./Article";
 import { getArticles } from './utils/api';
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/articles" element={<Articles articles={articles} setArticles={setArticles} />} />
+          <Route path="/article/:article_id" element={<Article />} />
         </Routes>
       </div>
     </BrowserRouter>

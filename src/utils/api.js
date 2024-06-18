@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const ncNewsApi = axios.create({
-  baseURL: "https://not-fake-news.onrender.com/api/",
+  baseURL: "https://not-fake-news.onrender.com/api",
 });
 
 export const getArticles = () => {
@@ -9,3 +9,9 @@ export const getArticles = () => {
     return data;
   });
 };
+
+export const getArticleById = (article_id) => {
+    return ncNewsApi.get(`/articles/${article_id}`).then(({ data }) => {
+      return data;
+    });
+  };

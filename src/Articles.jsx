@@ -7,7 +7,6 @@ function Articles({ articles, setArticles }) {
     useEffect(() => {
         getArticles()
           .then(data => {
-            console.log(data.articles, "<<<<< articles data");
             setArticles(data.articles);
           })
           .catch(error => {
@@ -15,9 +14,13 @@ function Articles({ articles, setArticles }) {
           });
       }, []);
 
+      if (!articles) {
+        return <p>Loading articles...</p>;
+      }
+
       return (
         <section>
-          <h3>Articles</h3>
+          <h3>Please select an article</h3>
           <div className="articles-grid">
             {articles.map((article) => (
               <ArticleCard key={article.article_id} article={article} />
