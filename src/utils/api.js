@@ -16,14 +16,26 @@ export const getArticleById = (article_id) => {
     });
   };
 
+  export const patchArticleVotes = (article_id, voteChange) => {
+    return ncNewsApi.patch(`/articles/${article_id}`, { inc_votes: voteChange }).then(({ data }) => {
+      return data;
+    });
+  };
+
   export const getCommentsByArticleId = (article_id) => {
     return ncNewsApi.get(`/articles/${article_id}/comments`).then(({ data }) => {
       return data;
     });
   };
 
-  export const patchArticleVotes = (article_id, voteChange) => {
-    return ncNewsApi.patch(`/articles/${article_id}`, { inc_votes: voteChange }).then(({ data }) => {
+  export const getUsers = () => {
+    return ncNewsApi.get("/users").then(({ data }) => {
       return data;
     });
+  };
+
+  export const postComment = (article_id, username, body) => {
+    return ncNewsApi.post(`/articles/${article_id}/comments`, { username, body }).then(({ data }) => {
+        return data;
+      });
   };

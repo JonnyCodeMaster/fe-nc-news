@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import {
   getArticleById,
-  getCommentsByArticleId,
   patchArticleVotes,
+  getCommentsByArticleId,
+  postComment,
 } from "./utils/api";
 import CommentCard from "./CommentCard";
+import { UserContext } from "./contexts/UserContext";
 import "./App.css";
 
 function Article() {
@@ -16,6 +18,10 @@ function Article() {
   const [isLoadingComments, setIsLoadingComments] = useState(true);
   const [votes, setVotes] = useState(0);
   const [voteError, setVoteError] = useState(null);
+  const [newComment, setNewComment] = useState("");
+  const [postSuccess, setPostSuccess] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { user } = useContext(UserContext);
 
   useEffect(() => {
     setIsLoadingArticle(true);
@@ -45,7 +51,7 @@ function Article() {
         }
         setIsLoadingComments(false);
       });
-  }, [article_id]);
+  }, [article_id, postSuccess]);
 
   const handleArticleVote = (voteChange) => {
     setVoteError(null);
@@ -56,6 +62,35 @@ function Article() {
       setVoteError("Error voting on article", error);
       setVotes((votes) => votes - voteChange);
     });
+  };
+
+  const handleCommentSubmit = (event) => {
+    event.preventDefault();
+
+    if (!user) {
+      alert("Please login to post a comment.");
+      return;
+    }
+
+    if (!newComment.trim()) {
+      alert("Please enter a comment.");
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    postComment(article_id, user.username, newComment)
+      .then((comment) => {
+        setNewComment("");
+        setPostSuccess(true);
+      })
+      .catch((error) => {
+        console.error("Error posting comment:", error);
+        alert("Failed to post comment. Please try again later.");
+      })
+      .finally(() => {
+        setIsSubmitting(false);
+      });
   };
 
   if (isLoadingArticle) {
@@ -95,6 +130,27 @@ function Article() {
           </div>
         </div>
       </div>
+
+      <section className="comment-form-section">
+        <h3>Add a new comment</h3>
+        {user ? (
+          <form onSubmit={handleCommentSubmit} className="commewnt-form">
+            <textarea
+              rows="5"
+              placeholder="Write your comment here..."
+              value={newComment}
+              onChange={(event) => setNewComment(event.target.value)}
+              required
+              className="comment-textarea"
+            />
+            <br />
+            <button type="submit" disabled={isSubmitting} className="nav-button">{isSubmitting ? 'Submitting...' : 'Submit'}</button>
+            {postSuccess && <p style={{ color: "lime" }}>Comment posted successfully!</p>}
+          </form>
+        ) : (
+          <p>Please log in to leave a comment.</p>
+        )}
+      </section>
 
       <section className="comments-section">
         <h3>Comments</h3>
