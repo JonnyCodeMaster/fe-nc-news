@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { UserProvider } from "./contexts/UserContext";
 import Header from "./Header";
 import Nav from "./Nav";
 import Home from "./Home";
@@ -9,7 +10,6 @@ import Users from "./Users";
 import Login from "./Login";
 import Topics from "./Topics";
 import TopicArticles from "./TopicArticles";
-import { UserProvider } from "./contexts/UserContext";
 import "./App.css";
 
 function App() {
