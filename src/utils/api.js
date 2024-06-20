@@ -39,3 +39,10 @@ export const getArticleById = (article_id) => {
         return data;
       });
   };
+
+
+  export const deleteComment = (comment_id) => {
+    return ncNewsApi.delete(`/comments/${comment_id}`).then(({ data }) => {
+      return data;
+    });
+  };
