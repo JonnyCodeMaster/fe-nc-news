@@ -342,3 +342,38 @@ body {
   color: ivory;
   background-color: red;
 }
+
+.sort-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+  color: ivory;
+}
+
+.sort-controls label {
+  margin-right: 10px;
+  font-size: 1rem;
+}
+
+.sort-controls select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: ivory;
+  color: black;
+  padding: 5px 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.5s ease, transform 0.5s ease;
+  background-image: url('data:image/svg+xml;utf8,<svg fill="black" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18px" height="18px"><path d="M7 10l5 5 5-5z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  padding-right: 30px;
+}
+
+.sort-controls select:hover {
+  background-color: darkred;
+  color: ivory;
+  transform: scale(1.05);
+}

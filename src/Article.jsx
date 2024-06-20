@@ -7,8 +7,8 @@ import {
   postComment,
   deleteComment,
 } from "./utils/api";
-import CommentCard from "./CommentCard";
 import { UserContext } from "./contexts/UserContext";
+import CommentCard from "./CommentCard";
 import "./App.css";
 
 function Article() {
