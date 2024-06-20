@@ -19,22 +19,12 @@ function Nav({ user }) {
         <Link className="Link" to="/articles">
           <button className={`nav-button ${selectedMenu === 'Articles' ? 'active' : ''}`} onClick={() => handleMenuClick('Articles')}>Articles</button>
         </Link>
+        <Link className="Link" to="/topics">
+            <button className={`nav-button ${selectedMenu === 'Topics' ? 'active' : ''}`} onClick={() => handleMenuClick('Topics')}>Topics</button>
+          </Link>
         <Link className="Link" to="/login">
           <button className={`nav-button ${selectedMenu === 'Login' ? 'active' : ''}`} onClick={() => handleMenuClick('Login')}>Login</button>
         </Link>
-        {/* <Link className="Link" to="/users">
-          <button className={`nav-button ${selectedMenu === 'Users' ? 'active' : ''}`} onClick={() => handleMenuClick('Users')}>Users</button>
-        </Link> */}
-        {/* {user ? (
-          <div className="user-info">
-            <img src={user.avatar_url} alt={user.name} className="avatar" />
-            <span>{user.name}</span>
-          </div>
-        ) : (
-          <Link className="Link" to="/login">
-            <button className={`nav-button ${selectedMenu === 'Login' ? 'active' : ''}`} onClick={() => handleMenuClick('Login')}>Login</button>
-          </Link>
-        )} */}
       </nav>
     </section>
   );

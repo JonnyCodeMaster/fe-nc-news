@@ -1,9 +1,7 @@
 import React from "react";
-import { useState } from "react";
 import { useContext } from "react";
-import { Link } from "react-router-dom";
-import "./App.css";
 import { UserContext } from "./contexts/UserContext";
+import "./App.css";
 
 function Header() {
   const { user } = useContext(UserContext);
