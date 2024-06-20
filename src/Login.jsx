@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { UserContext } from "./contexts/UserContext";
-import "./App.css";
 import { getUsers } from "./utils/api";
+import "./App.css";
 
 function Login() {
     const { setUser } = useContext(UserContext);
