@@ -10,6 +10,7 @@ function Articles() {
     const [sortParams, setSortParams] = useState({ sortBy: "created_at", order: "desc" });
     const navigate = useNavigate();
     const [searchParams, setSearchParams] = useSearchParams();
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         setIsLoadingArticles(true);
@@ -20,7 +21,7 @@ function Articles() {
                 setIsLoadingArticles(false);
             })
             .catch(error => {
-                console.error('Error fetching items:', error);
+                setError(error.msg || "Error fetching articles. Please try again later.");
                 setIsLoadingArticles(false);
             });
     }, [sortParams]);
@@ -56,6 +57,10 @@ function Articles() {
 
     if (isLoadingArticles) {
         return <p>Loading articles...</p>;
+    }
+
+    if (error) {
+        return <p>{error}</p>;
     }
 
     return (

@@ -9,9 +9,11 @@ function TopicArticles() {
   const [articlesByTopic, setArticlesByTopic] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [sortParams, setSortParams] = useState({ sortBy: "created_at", order: "desc" });
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     setIsLoading(true);
+
     getArticlesByTopic(slug)
       .then((data) => {
         const sortedArticles = sortArticles(data.articles, sortParams.sortBy, sortParams.order);
@@ -19,7 +21,7 @@ function TopicArticles() {
         setIsLoading(false);
       })
       .catch((error) => {
-        console.error("Error fetching articles:", error);
+        setError(error.msg || "Error fetching topic articles. Please try again later.");
         setIsLoading(false);
       });
   }, [slug, sortParams]);
@@ -44,6 +46,14 @@ function TopicArticles() {
 
   if (isLoading) {
     return <p>Loading {slug} articles...</p>;
+  }
+
+  if (articlesByTopic.length === 0) {
+    return <p>No articles found for this topic. Please try a different topic!</p>;
+  }
+
+  if (error) {
+    return <p>{error.msg}</p>;
   }
 
   return (

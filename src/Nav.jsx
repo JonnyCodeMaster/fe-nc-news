@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./App.css";
 
-function Nav({ user }) {
+function Nav() {
   const [selectedMenu, setSelectedMenu] = useState("");
 
   const handleMenuClick = (menuClicked) => {
