@@ -6,6 +6,7 @@ import './App.css';
 function Topics() {
   const [topics, setTopics] = useState([]);
   const [isLoadingTopics, setIsLoadingTopics] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     setIsLoadingTopics(true);
@@ -15,13 +16,17 @@ function Topics() {
         setIsLoadingTopics(false);
       })
       .catch((error) => {
-        console.error("Error fetching topics:", error);
+        setError(error.msg || "Error fetching topics. Please try again later.");
         setIsLoadingTopics(false);
       });
   }, []);
 
   if (isLoadingTopics) {
     return <p>Loading topics...</p>;
+  }
+
+  if (error) {
+    return <p>{error.msg}</p>;
   }
 
   return (

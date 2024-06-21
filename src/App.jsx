@@ -10,6 +10,7 @@ import Users from "./Users";
 import Login from "./Login";
 import Topics from "./Topics";
 import TopicArticles from "./TopicArticles";
+import NotFound from "./NotFound";
 import "./App.css";
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/topics" element={<Topics />} />
             <Route path="/topics/:slug" element={<TopicArticles />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
       </UserProvider>

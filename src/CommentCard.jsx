@@ -6,6 +6,7 @@ import './App.css';
 const CommentCard = ({
     comment,
     onDelete,
+    showDeleteSuccessMessage,
     deleteSuccess,
     deleteError,
     isDeleting,
@@ -32,8 +33,10 @@ const CommentCard = ({
               {isDeleting && <p style={{ color: "ivory" }}>Deleting comment...</p>}
             </div>
           )}
+          {showDeleteSuccessMessage && (
+              <p style={{ color: "lime" }}>Comment deleted successfully!</p>
+            )}
           {deleteError && <p style={{ color: "red" }}>{deleteError}</p>}
-          {deleteSuccess && <p style={{ color: "lime" }}>{deleteSuccess}</p>}
         </div>
       </li>
     );
